@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Arpita ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffe6e6, #ffb3d9);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative; /* লাভ পজিশন ঠিক রাখার জন্য যোগ করা হয়েছে */
+        }
+
+        /* --- এখানে নতুন লাভ ব্যাকগ্রাউন্ড CSS যোগ করা হয়েছে --- */
+        .heart-bg {
+            position: absolute;
+            bottom: -20px;
+            color: rgba(220, 53, 69, 0.25); /* লালচে লাভ ইফেক্ট */
+            font-size: 24px;
+            animation: floatUp 4s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); /* হালকা ট্রান্সপারেন্ট করা হয়েছে যেন পেছনের লাভ দেখা যায় */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            z-index: 10; /* কন্টেইনারকে লাভের ওপরে রাখার জন্য */
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 24px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 50px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+            left: 55%;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="question">HI arpita are you my best friend? 🥺</h1>
+        <div class="btn-group">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const question = document.getElementById('question');
+
+        // নো বাটনটি সরানোর ফাংশন
+        function moveNoButton() {
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding * 2) + padding;
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding * 2) + padding;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        // মাউস ও টাচ ইভেন্ট
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); 
+            moveNoButton();
+        });
+
+        // ইয়েস বাটনে ক্লিক অ্যাকশন
+        function celebrate() {
+            question.innerHTML = "I knew it! You are the best! 🎉❤️";
+            noBtn.style.display = 'none'; 
+            yesBtn.style.transform = 'scale(1.2)';
+            yesBtn.disabled = true;
+        }
+
+        // --- এখানে নতুন লাভ ব্যাকগ্রাউন্ড জেনারেটর জাভাস্ক্রিপ্ট যোগ করা হয়েছে ---
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-bg');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 300);
+        }
+        createHearts(); // রান করা হলো
+    </script>
+
+</body>
+</html>
